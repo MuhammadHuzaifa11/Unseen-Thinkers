@@ -78,7 +78,7 @@ if uploaded_file:
         )
 
         st.divider()
-        st.header("💬 Business Voice Assistant")
+        st.header("💬 Business  Assistant")
         question = st.text_input("Ask a question about the report")
 
         if question:

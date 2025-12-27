@@ -4,12 +4,11 @@ import streamlit as st
 import google.generativeai as genai
 from dotenv import load_dotenv
 from groq import Groq
-from elevenlabs.client import ElevenLabs
+
 
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 GROQ_KEY = os.getenv("GROQ_API_KEY")
-ELEVEN_KEY = os.getenv("ELEVEN_API_KEY")
 if not api_key:
     try:
         api_key = st.secrets["GEMINI_API_KEY"]
@@ -19,7 +18,7 @@ if not api_key:
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-flash-latest")
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
-eleven_client = ElevenLabs(api_key=ELEVEN_KEY) if ELEVEN_KEY else None
+
 @st.cache_data(show_spinner=False)
 def get_ai_response(vital_stats, task_type):
     prompts = {
@@ -83,27 +82,3 @@ def get_chat_response(vital_stats, user_query):
 
     except Exception as e:
         return f"Chat Error: {str(e)}"
-
-
-# -------------------------------------------------
-# ELEVENLABS VOICE FUNCTION
-# -------------------------------------------------
-def generate_voice(text):
-    if not eleven_client:
-        return None
-
-    try:
-        # Generate the audio as a stream/bytes
-        audio_generator = eleven_client.text_to_speech.convert(
-            voice_id="pNInz6obpg8UdBe47H3j", 
-            text=text,
-            model_id="eleven_multilingual_v2",
-            output_format="mp3_44100_128"
-        )
-        
-        # Collect all chunks into a single bytes object
-        audio_bytes = b"".join(chunk for chunk in audio_generator if chunk)
-        return audio_bytes # Return the bytes directly
-        
-    except Exception as e:
-        return None
