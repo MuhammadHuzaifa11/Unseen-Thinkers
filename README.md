@@ -1,92 +1,28 @@
-# \\# AI Workflow \\\& Report Generator - By Unseen Thinkers
+# AI Workflow & Report Generator
 
-# 
+### Developed by Unseen Thinkers
 
-# 
+## Overview
+Unseen Thinkers presents a rapid, AI-driven business intelligence tool designed for non-technical users. This application automates the analysis of complex CSV files, transforming raw data into strategic insights in under 5 seconds.
 
-# 
+## Key Features
+* **Instant Executive Summary**: Get a high-level financial overview of your data in seconds.
+* **Automated Anomaly Detection**: Quickly identify systemic risks and financial losses within your transactions.
+* **Strategic Action Planner**: Receive actionable, data-driven business recommendations to boost profit.
+* **Deep-Dive Assistant**: A conversational AI powered by Groq (Llama 3) for real-time querying of specific data nuances.
+* **One-Click Export**: Generate a professional text-based report for immediate business use.
 
-# \\## Overview
+## Technical Stack
+* **Interface**: Streamlit
+* **Data Engine**: Pandas (with fuzzy column mapping for flexible CSV uploads)
+* **Analysis AI**: Google Gemini Flash
+* **Chat AI**: Groq (Llama 3.3)
 
-# 
+## How to Run
+1. Clone this repository.
+2. Install dependencies: `pip install -r requirements.txt`
+3. Create a `.env` file and add your `GEMINI_API_KEY` and `GROQ_API_KEY`.
+4. Run the app: `streamlit run main.py`
 
-# \\\[cite\\\_start]Unseen Thinkers presents a rapid AI-driven business intelligence tool designed for non-technical users\\\[cite: 6, 37]. \\\[cite\\\_start]This application automates the analysis of complex CSV files, transforming raw data into strategic insights in under 5 seconds \\\[cite: 20-21, 51].
-
-# 
-
-# 
-
-# 
-
-# \\## Key Features
-
-# 
-
-# \\\* \\\[cite\\\_start]\\\*\\\*Instant Executive Summary\\\*\\\*: High-level financial overview generated in seconds\\\[cite: 31, 56].
-
-# 
-
-# \\\* \\\[cite\\\_start]\\\*\\\*Automated Anomaly Detection\\\*\\\*: Identification of systemic risks and financial losses\\\[cite: 32, 56].
-
-# 
-
-# \\\* \\\[cite\\\_start]\\\*\\\*Strategic Action Planner\\\*\\\*: Actionable, data-driven business recommendations\\\[cite: 33, 39, 56].
-
-# 
-
-# \\\* \\\*\\\*Deep-Dive Assistant\\\*\\\*: A conversational AI powered by Groq for real-time querying of data nuances.
-
-# 
-
-# \\\* \\\*\\\*One-Click Export\\\*\\\*: Professional text-based report generation for immediate business use.
-
-# 
-
-# 
-
-# 
-
-# \\## Technical Stack
-
-# 
-
-# \\\* \\\[cite\\\_start]\\\*\\\*Interface\\\*\\\*: Streamlit\\\[cite: 24].
-
-# 
-
-# \\\* \\\[cite\\\_start]\\\*\\\*Data Engine\\\*\\\*: Pandas for robust CSV processing and fuzzy column mapping\\\[cite: 25, 60].
-
-# 
-
-# \\\* \\\[cite\\\_start]\\\*\\\*Analysis AI\\\*\\\*: Google Gemini Flash (via API) for primary reporting\\\[cite: 26, 315].
-
-# 
-
-# \\\* \\\*\\\*Chat AI\\\*\\\*: Groq (Llama 3.3) for ultra-low latency conversational insights.
-
-# 
-
-# 
-
-# 
-
-# \\## Implementation Guardrails
-
-# 
-
-# This project strictly adheres to the following hackathon constraints:
-
-# 
-
-# 1\\.  \\\[cite\\\_start]\\\*\\\*Speed\\\*\\\*: All mandatory outputs are generated in sub-5-second runtimes\\\[cite: 35, 51, 243].
-
-# 
-
-# 2\\.  \\\[cite\\\_start]\\\*\\\*Safety\\\*\\\*: Mandatory ethical warnings and data-grounded justifications prevent AI hallucinations\\\[cite: 40, 248].
-
-# 
-
-# 3\\.  \\\[cite\\\_start]\\\*\\\*Usability\\\*\\\*: Clean, professional UI designed for immediate impact by managers and analysts\\\[cite: 49, 91, 251].
-
-# 
-
+---
+*Built for the [Engineers code] to empower managers through speed and strategic AI.*

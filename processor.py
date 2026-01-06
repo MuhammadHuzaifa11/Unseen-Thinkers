@@ -2,10 +2,12 @@ import pandas as pd
 
 def process_csv(uploaded_file):
     try:
-        # Standardize encoding for business CSVs [cite: 25]
         df = pd.read_csv(uploaded_file, encoding='latin1')
-        
-        # Dynamic Column Mapping to prevent errors with alternate CSVs [cite: 242]
+        for col in df.columns:
+            if df[col].dtype == 'object':
+                # Remove $, commas, and spaces, then convert to numeric
+                clean_col = df[col].astype(str).str.replace(r'[$, ]', '', regex=True)
+                df[col] = pd.to_numeric(clean_col, errors='ignore')
         cols = {col.lower(): col for col in df.columns}
         s_col = next((cols[c] for c in ['sales', 'revenue'] if c in cols), df.columns[0])
         p_col = next((cols[c] for c in ['profit', 'gain'] if c in cols), df.columns[1])

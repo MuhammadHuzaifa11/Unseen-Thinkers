@@ -5,18 +5,15 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from groq import Groq
 
-
 load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
-GROQ_KEY = os.getenv("GROQ_API_KEY")
-if not api_key:
-    try:
-        api_key = st.secrets["GEMINI_API_KEY"]
-    except:
-        api_key = "AIzaSyA4Yemxk0OYleVIQEUMxkpM9wWwyRdBDTU"
 
-genai.configure(api_key=api_key)
-model = genai.GenerativeModel("gemini-flash-latest")
+api_key = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
+GROQ_KEY = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY")
+if not api_key:
+    st.error("Gemini API Key is missing. Please check your .env file or Streamlit secrets.")
+else:
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel("gemini-flash-latest")
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
 
 @st.cache_data(show_spinner=False)
@@ -62,9 +59,11 @@ def get_chat_response(vital_stats, user_query):
     context = f"""
     Dataset Scope: {vital_stats.get('scope')}
     Financials: {vital_stats.get('financials')}
-    Categories: {vital_stats.get('champions', {}).get('category')}
+    Top Category by Sales: {vital_stats.get('champions', {}).get('category')}
+    Detected Risks: {", ".join(vital_stats.get('risks', []))}
 
-    If a question asks for missing data, clearly say it is not available.
+    Use this data to answer. If asked about specific areas not in this summary, 
+    mention the overall performance of the Top Category.
     """
 
     try:
@@ -77,7 +76,6 @@ def get_chat_response(vital_stats, user_query):
             temperature=0.2,
             max_tokens=300
         )
-
         return completion.choices[0].message.content
 
     except Exception as e:

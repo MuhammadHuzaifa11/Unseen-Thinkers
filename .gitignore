@@ -1,0 +1,12 @@
+# Credentials and Secrets
+.env
+.streamlit/
+
+# Python junk
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+env/
